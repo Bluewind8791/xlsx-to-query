@@ -1,5 +1,14 @@
 # Excel to Query Generator 사용법
 
+1. input 폴더에 Excel 파일(.xlsx, .xls)을 넣어주세요
+2. sample_query.txt 파일에 쿼리 템플릿을 작성해주세요
+3. ExcelQueryGenerator.exe를 실행하세요
+4. output 폴더에서 생성된 쿼리 파일을 확인하세요
+
+---
+
+# 세팅법
+
 ## 1. 필요한 라이브러리 설치
 
 ```bash
@@ -62,38 +71,6 @@ python excel_query_generator.py
 - ✅ `output` 디렉토리에 Excel 파일명과 동일한 이름의 `.txt` 파일로 저장
 - ✅ 처리 진행 상황과 결과를 콘솔에 출력
 
-## 실행 예시
-
-```
-=== Excel to Query Generator ===
-input 디렉토리를 생성했습니다.
-output 디렉토리를 생성했습니다.
-쿼리 템플릿을 읽었습니다: sample_query.txt
-템플릿 내용: update sample_table set use_yn = {사용여부} where sample_pk = {문서번호};
-발견된 Excel 파일: 2개
-
-처리 중: 사용자데이터.xlsx
-  헤더: ['문서번호', '사용여부', '제목']
-  데이터 행: 100개
-  플레이스홀더: ['사용여부', '문서번호']
-  → 100개 쿼리 생성됨
-  → 저장 위치: output/사용자데이터.txt
-✓ 사용자데이터.xlsx 처리 완료
-
-처리 중: 제품정보.xlsx
-  헤더: ['상품ID', '상품명', '가격']
-  데이터 행: 50개
-  플레이스홀더: ['사용여부', '문서번호']
-  경고: '사용여부' 컬럼을 찾을 수 없습니다.
-  경고: '문서번호' 컬럼을 찾을 수 없습니다.
-  → 50개 쿼리 생성됨
-  → 저장 위치: output/제품정보.txt
-✓ 제품정보.xlsx 처리 완료
-
-전체 처리 완료: 2/2 파일
-
-처리가 완료되었습니다!
-```
 
 ## 쿼리 템플릿 예시
 
