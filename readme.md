@@ -5,6 +5,42 @@
 3. ExcelQueryGenerator.exe를 실행하세요
 4. output 폴더에서 생성된 쿼리 파일을 확인하세요
 
+
+## 쿼리 템플릿 예시
+
+### UPDATE 쿼리
+```sql
+update sample_table set use_yn = {사용여부} where sample_pk = {문서번호};
+```
+
+### INSERT 쿼리
+```sql
+insert into users (name, age, email) values ({이름}, {나이}, {이메일});
+```
+
+### DELETE 쿼리
+```sql
+delete from products where id = {상품ID} and status = {상태};
+```
+
+### 복합 UPDATE 쿼리
+```sql
+update orders 
+set status = {주문상태}, 
+    updated_by = {수정자}, 
+    updated_date = now() 
+where order_id = {주문번호} 
+  and customer_id = {고객번호};
+```
+
+## 주의사항
+
+- Excel 파일의 첫 번째 행은 반드시 헤더(컬럼명)여야 합니다
+- 플레이스홀더 `{컬럼명}`의 컬럼명은 Excel 헤더와 정확히 일치해야 합니다 (대소문자 무시)
+- 빈 셀이나 NULL 값은 자동으로 `NULL`로 처리됩니다
+- 문자열에 포함된 작은따옴표(`'`)는 자동으로 이스케이핑됩니다 (`''`)
+
+
 ---
 
 # 세팅법
@@ -70,38 +106,3 @@ python excel_query_generator.py
 - ✅ 대소문자 구분 없이 컬럼명 매칭
 - ✅ `output` 디렉토리에 Excel 파일명과 동일한 이름의 `.txt` 파일로 저장
 - ✅ 처리 진행 상황과 결과를 콘솔에 출력
-
-
-## 쿼리 템플릿 예시
-
-### UPDATE 쿼리
-```sql
-update sample_table set use_yn = {사용여부} where sample_pk = {문서번호};
-```
-
-### INSERT 쿼리
-```sql
-insert into users (name, age, email) values ({이름}, {나이}, {이메일});
-```
-
-### DELETE 쿼리
-```sql
-delete from products where id = {상품ID} and status = {상태};
-```
-
-### 복합 UPDATE 쿼리
-```sql
-update orders 
-set status = {주문상태}, 
-    updated_by = {수정자}, 
-    updated_date = now() 
-where order_id = {주문번호} 
-  and customer_id = {고객번호};
-```
-
-## 주의사항
-
-- Excel 파일의 첫 번째 행은 반드시 헤더(컬럼명)여야 합니다
-- 플레이스홀더 `{컬럼명}`의 컬럼명은 Excel 헤더와 정확히 일치해야 합니다 (대소문자 무시)
-- 빈 셀이나 NULL 값은 자동으로 `NULL`로 처리됩니다
-- 문자열에 포함된 작은따옴표(`'`)는 자동으로 이스케이핑됩니다 (`''`)
